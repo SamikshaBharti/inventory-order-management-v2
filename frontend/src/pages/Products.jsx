@@ -98,7 +98,7 @@ export default function Products() {
         <form className="panel form-panel" onSubmit={handleSubmit}>
           <h3>{editingId ? 'Edit Product' : 'Add Product'}</h3>
           <label>Name<input name="name" value={form.name} onChange={handleChange} /></label>
-          <label>SKU<input name="sku" value={form.sku} onChange={handleChange} /></label>
+          <label>SKU Code<input name="sku" value={form.sku} onChange={handleChange} /></label>
           <label>Price ($)<input name="price" type="number" step="0.01" min="0" value={form.price} onChange={handleChange} /></label>
           <label>Stock Qty<input name="quantity_in_stock" type="number" min="0" value={form.quantity_in_stock} onChange={handleChange} /></label>
           <div className="btn-row">
@@ -116,7 +116,7 @@ export default function Products() {
           <input
             type="search"
             className="search-input"
-            placeholder="Search by name or SKU"
+            placeholder="Search by name or SKU code"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -129,7 +129,7 @@ export default function Products() {
             <div className="table-wrap">
               <table>
                 <thead>
-                  <tr><th>Name</th><th>SKU</th><th>Price</th><th>Stock</th><th>Actions</th></tr>
+                  <tr><th>Name</th><th>SKU Code</th><th>Price</th><th>Stock</th><th>Actions</th></tr>
                 </thead>
                 <tbody>
                   {filtered.map((p) => (
@@ -137,7 +137,7 @@ export default function Products() {
                       <td>{p.name}</td>
                       <td><code>{p.sku}</code></td>
                       <td>${p.price.toFixed(2)}</td>
-                      <td className={p.quantity_in_stock <= 10 ? 'low-stock' : ''}>{p.quantity_in_stock}</td>
+                      <td className={p.quantity_in_stock <= 1 ? 'low-stock' : ''}>{p.quantity_in_stock}</td>
                       <td className="actions">
                         <button className="btn small" onClick={() => startEdit(p)}>Edit</button>
                         <button className="btn small danger" onClick={() => handleDelete(p.id)}>Delete</button>

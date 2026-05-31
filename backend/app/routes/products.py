@@ -20,8 +20,9 @@ def create_product():
     except ValueError as err:
         return jsonify({"error": str(err)}), 400
 
+    # SKU has to be unique — the db enforces this too but better to catch early
     if Product.query.filter_by(sku=data["sku"]).first():
-        return jsonify({"error": "A product with this SKU already exists"}), 409
+        return jsonify({"error": "A product with this SKU code already exists"}), 409
 
     product = Product(
         name=data["name"].strip(),
@@ -58,10 +59,12 @@ def update_product(product_id):
     if not data:
         return jsonify({"error": "Request body is required"}), 400
 
+
+    # only check SKU uniqueness if it's actually changing
     if "sku" in data and data["sku"] != product.sku:
         existing = Product.query.filter_by(sku=data["sku"]).first()
         if existing:
-            return jsonify({"error": "A product with this SKU already exists"}), 409
+            return jsonify({"error": "A product with this SKU code already exists"}), 409
         product.sku = data["sku"].strip()
 
     if "name" in data:

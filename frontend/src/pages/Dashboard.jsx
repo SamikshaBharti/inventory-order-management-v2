@@ -46,7 +46,7 @@ export default function Dashboard() {
             <thead>
               <tr>
                 <th>Product</th>
-                <th>SKU</th>
+                <th>SKU Code</th>
                 <th>Stock Left</th>
                 <th>Price</th>
               </tr>

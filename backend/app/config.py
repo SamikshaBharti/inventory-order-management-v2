@@ -9,7 +9,6 @@ def _database_url():
     )
     if url.startswith("postgres://"):
         url = url.replace("postgres://", "postgresql://", 1)
-    # SSL only for external Render URLs (not internal dpg-xxxxx-a hostnames)
     if ".render.com" in url and "sslmode=" not in url:
         separator = "&" if "?" in url else "?"
         url = f"{url}{separator}sslmode=require"
@@ -24,4 +23,4 @@ class Config:
         "pool_pre_ping": True,
         "pool_recycle": 300,
     }
-    LOW_STOCK_THRESHOLD = int(os.getenv("LOW_STOCK_THRESHOLD", "10"))
+    LOW_STOCK_THRESHOLD = int(os.getenv("LOW_STOCK_THRESHOLD", "1"))
