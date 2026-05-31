@@ -115,6 +115,24 @@ body {
 
 .panel h3 { font-size: 1rem; margin-bottom: 1rem; }
 
+.search-input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
 .two-col {
   display: grid;
   grid-template-columns: 320px 1fr;
